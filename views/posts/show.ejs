@@ -10,6 +10,8 @@
    </div>
 
    <p><%- escapeText(post.body) %></p>
+   <p>Comentarios: <%= comments.length %></p>
+   
 
    <% if (session.user && session.user.id == post.authorId) {%>  
      <a href="/posts/<%= post.id %>/edit"> Editar </a>

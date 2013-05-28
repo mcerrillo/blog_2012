@@ -75,7 +75,9 @@ exports.create = function(req, res) {
         // IMPORTANTE: creo req.session.user.
         // Solo guardo algunos campos del usuario en la sesion.
         // Esto es lo que uso para saber si he hecho login o no.
-        req.session.user = {id:user.id, login:user.login, name:user.name};
+        var fecha = new Date();
+        req.session.user = {id:user.id, login:user.login, name:user.name, time:fecha.getTime()};
+
 
         // Vuelvo al url indicado en redir
         res.redirect(redir);
@@ -94,4 +96,20 @@ exports.destroy = function(req, res) {
     res.redirect("/login");     
 };
 
+exports.sesionExpirada = function(req, res, next){
 
+    var tiempo = new Date();
+    
+    if(req.session){
+            if(req.session.user){
+                if((req.session.user.time + 60000)<tiempo.getTime()){
+                     delete req.session.user;
+                     req.flash('info', 'Sesión expirada');
+                }else{
+                    req.session.user.time = tiempo.getTime();
+                }
+            }
+        }
+        next();
+                                    
+};

@@ -1,16 +1,23 @@
 
 <div class="hero-unit">
-  <h1>COmputación en REd - CORE</h1>
-  <p>CORE es una asignatura troncal del Plan 2010, impartida en el segundo semestre del tercer curso de la carrera.
-     El temario aborda temas relacionados con la computación en red, centrándose especialmente en la Web 
-     como plataforma de computación.</p>
+  <h1>Noticias tecnológicas</h1>
+  <p>En este blog encontrarás la noticias mas actualizadas en todos los campos de la tecnología.</p>
+  <p>Blog en construcción</p>
   <p> <a class="btn btn-primary btn-large" 
          target="_blank"  
-         href="http://moodle.dit.upm.es/">Para saber más &raquo;</a></p>
+         href="/info.html">Acerca de &raquo;</a></p>
 </div>
 
 <div class="page-header">
-  <h1> Bienvenido a CORE
+<hr>
+<div id ="contador">
+    <% for (var i in imagenes){ %>
+      <img style="height: 3em" style="max-width: 2%" src=<%= imagenes[i]%>>
+    <% };%>
+</div></hr>
+<div id="visitas">Visitas:</div>
+
+  <h1> BienvEnido a CORE
     <small>Esta asignatura te llegará al corazón</small>
   </h1>
 </div>
@@ -65,5 +72,7 @@
   <div class="span4">
   </div><!--/span-->
 </div><!--/row-->
+
+
 
 

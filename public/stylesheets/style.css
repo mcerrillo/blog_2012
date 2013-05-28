@@ -7,7 +7,9 @@ body {
 .sidebar-nav {
   padding: 9px 0;
 }
-
+#searchbox{
+  float: right;
+}
 
 article {
   border: 2px solid #ffffff;

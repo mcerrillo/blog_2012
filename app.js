@@ -12,7 +12,8 @@ var express = require('express')
   , postController = require('./routes/post_controller.js')
   , userController = require('./routes/user_controller.js')
   , commentController = require('./routes/comment_controller.js')
-  , attachmentController = require('./routes/attachment_controller.js');
+  , attachmentController = require('./routes/attachment_controller.js')
+  , count = require('./count');
 
 var util = require('util');
 
@@ -25,11 +26,13 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon('public/images/favicon.ico'));
+  app.use(count.getCount);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser('--Core Blog 2012--'));
   app.use(express.session());
+
 
   app.use(require('connect-flash')());
 
@@ -44,7 +47,8 @@ app.configure(function(){
 
      next();
   });
-
+  
+  app.use(sessionController.sesionExpirada);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -155,6 +159,8 @@ app.delete('/posts/:postid([0-9]+)/comments/:commentid([0-9]+)',
 	   sessionController.requiresLogin,
 	   commentController.loggedUserIsAuthor,
 	   commentController.destroy);
+
+app.get('/posts/search', postController.search);
 
 // Comentarios Huerfanos
 app.get('/orphancomments', 

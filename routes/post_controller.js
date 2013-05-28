@@ -49,7 +49,7 @@ exports.index = function(req, res, next) {
 
     models.Post
         .findAll({order: 'updatedAt DESC',
-	                include: [ { model: models.User, as: 'Author' } ]
+	                include: [ { model: models.User, as: 'Author'} , models.Comment]
 	      })
         .success(function(posts) {
 
@@ -336,3 +336,28 @@ exports.destroy = function(req, res, next) {
            next(error);
        });
 };
+
+// GET /posts/search
+exports.search = function(req, res, next){
+
+  var string = req.query.busqueda;
+
+  models.Post
+
+        .findAll({where: ["title like ? OR body like ?",'%' + string + '%','%' + string + '%'], order: "updatedAt DESC"})
+        .success(function(posts) {
+            if (posts) {
+                res.render('posts/index', {posts: posts});
+            } else {
+                console.log('No se ha encontrado ningún post que coincida con la busqueda.');
+                res.redirect('/posts');
+            }
+        })
+        .error(function(error) {
+            console.log(error);
+            res.redirect('/');
+        });
+
+  
+
+}
