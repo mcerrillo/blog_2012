@@ -8,11 +8,11 @@ var Sequelize = require('sequelize');
 var sequelize = new Sequelize(process.env.DATABASE_NAME, 
                               process.env.DATABASE_USER, 
                               process.env.DATABASE_PASSWORD, 
-            { dialect: "sqlite", 
+            { dialect: process.env.DATABASE_DIALECT, 
               protocol: process.env.DATABASE_PROTOCOL, 
               port: process.env.DATABASE_PORT,
               host: process.env.DATABASE_HOST,
-              storage: "blog.sqlite",
+              storage: process.env.DATABASE_STORAGE,
               omitNull: true});
 
 // Importar la definicion de los modelos:
