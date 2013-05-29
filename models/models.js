@@ -12,7 +12,7 @@ var sequelize = new Sequelize(process.env.DATABASE_NAME,
               protocol: process.env.DATABASE_PROTOCOL, 
               port: process.env.DATABASE_PORT,
               host: process.env.DATABASE_HOST,
-              storage: process.env.DATABASE_STORAGE,
+              storage: process.env.STORAGE,
               omitNull: true});
 
 // Importar la definicion de los modelos:

@@ -15,8 +15,13 @@ body {
   float: left;
   max-height: 10em;
 }
-#bloqueExplicacion{
-  float: right;
+#bloqueVideo{
+  padding-right: 5%;
+  float: left;
+  
+}
+#div_vacio{
+  clear: both;
 }
 #comentarios{
   float: right;
