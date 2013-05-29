@@ -128,7 +128,7 @@ exports.delete = function(req, res, next){
                       next();
                 }
             }
-            res.redirect('/');
+            res.redirect('/Posts');
         })
         .error(function(error) {
             next(error);

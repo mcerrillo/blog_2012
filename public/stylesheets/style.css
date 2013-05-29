@@ -9,8 +9,21 @@ body {
 }
 #searchbox{
   float: right;
+  padding-top: 1%;
 }
-
+#imagen_inicial{
+  float: center;
+}
+#comentarios{
+  float: right;
+  padding-right: 5%;
+}
+#favoritos{
+  float: right;
+}
+#contador{
+  float: right;
+}
 article {
   border: 2px solid #ffffff;
   padding: 7px;

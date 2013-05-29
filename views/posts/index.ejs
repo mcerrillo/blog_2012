@@ -5,8 +5,11 @@
       <h1>
         <a href='/posts/<%= posts[i].id %>' class='titlelink'> <%= posts[i].title %> </a>
         <small>por <em> <%= posts[i].author && posts[i].author.name || "Sin autor" %> </em></small>
+      </h1>
+      <em> <%= posts[i].updatedAt.toLocaleDateString() %></em>
 
-        <% if (session.user) { %>
+      <div id="favoritos">
+      <% if (session.user) { %>
 
 
                   <%var esFavorito = 0%>
@@ -19,30 +22,35 @@
 
                   <%if (esFavorito){%>
                       <form  method='post' action='/users/<%= session.user.id%>/favourites/<%= posts[i].id %>'>
-                        <button type='hidden' name='_method' value='delete'><i class='icon-star icon-white'></i></button>
+                        <button class='btn btn-warning btn-mini' type='hidden' name='_method' value='delete'><i class='icon-star icon-white'></i></button>
                       </form>
                           
                   <% }else{%>
                       <form  method='post' action='/users/<%= session.user.id%>/favourites/<%= posts[i].id %>'>
-                        <button type='hidden' name='_method' value='put'><i class='icon-star'></i></button>
+                        <button class='btn btn-warning btn-mini' type='hidden' name='_method' value='put'><i class='icon-star'></i></button>
                       </form>
                   <% } %>
 
-        <% } %>
+      <% } %>
+      </div>
 
-      </h1>
-     <em> <%= posts[i].updatedAt.toLocaleDateString() %></em>
+      <%if(posts[i].comments){%>
+        <p id="comentarios">
+            <small>Comentarios: </small>
+            <small><%= posts[i].comments.length%></small>
+        </p>
+     <%}%>
+
    </div>
       
      <p>
         <%= posts[i].body.slice(0,1000) %> ... 
      </p>
-     <p>
-        <small>Comentarios: </small>
-        <small><%= posts[i].comments.length%></small>
-     </p>
+     
 
      <footer class="pull-right">
+
+      
 
       <% if (session.user && session.user.id == posts[i].authorId) {%>
 

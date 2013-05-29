@@ -343,8 +343,9 @@ exports.search = function(req, res, next){
   var string = req.query.busqueda;
 
   models.Post
-
-        .findAll({where: ["title like ? OR body like ?",'%' + string + '%','%' + string + '%'], order: "updatedAt DESC"})
+        .findAll({where: ["title like ? OR body like ?",'%' + string + '%','%' + string + '%'], order: "updatedAt DESC",
+                   include: [models.Favourite]
+        })
         .success(function(posts) {
             if (posts) {
                 res.render('posts/index', {posts: posts});
