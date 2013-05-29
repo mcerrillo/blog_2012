@@ -5,6 +5,11 @@
       <h1>
         <%= post.title %>
         <small>por <em> <%= post.author && post.author.name || "Sin autor" %> </em></small>
+        <% if (session.user) { %>
+        <form  method="GET" action="/posts/search">
+          <button type="submit"><i class='icon-star icon-white'></i></button>
+        </form>
+        <% } %>
       </h1>
      <em> <%= post.updatedAt.toLocaleDateString() %></em>
    </div>

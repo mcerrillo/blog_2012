@@ -13,7 +13,8 @@ var express = require('express')
   , userController = require('./routes/user_controller.js')
   , commentController = require('./routes/comment_controller.js')
   , attachmentController = require('./routes/attachment_controller.js')
-  , count = require('./count');
+  , count = require('./count')
+  , favouritesController = require('./routes/favourites_controller.js');
 
 var util = require('util');
 
@@ -210,6 +211,10 @@ app.put('/users/:userid([0-9]+)',
         sessionController.requiresLogin,
 	userController.loggedUserIsUser,
         userController.update);
+
+app.put('/users/:userid/favourites/:postid',favouritesController.add);
+app.delete('/users/:userid/favourites/:postid',favouritesController.delete);
+app.get('/users/:userid/favourites',favouritesController.index);
 
 // app.delete('/users/:userid([0-9]+)', 
 //        sessionController.requiresLogin,

@@ -1,35 +1,14 @@
-
 <% for (var i in posts) { %>
   <div class="post">
     <div class="page-header">
       <h1>
         <a href='/posts/<%= posts[i].id %>' class='titlelink'> <%= posts[i].title %> </a>
         <small>por <em> <%= posts[i].author && posts[i].author.name || "Sin autor" %> </em></small>
-
         <% if (session.user) { %>
-
-
-                  <%var esFavorito = 0%>
-                  <%for(var j in posts[i].favourites){%>
-                        <%if (posts[i].favourites[j].userId == session.user.id){%>
-                          <%esFavorito = 1;%>
-                        <%}%>
-                  <%}%>
-
-
-                  <%if (esFavorito){%>
-                      <form  method='post' action='/users/<%= session.user.id%>/favourites/<%= posts[i].id %>'>
-                        <button type='hidden' name='_method' value='delete'><i class='icon-star icon-white'></i></button>
-                      </form>
-                          
-                  <% }else{%>
-                      <form  method='post' action='/users/<%= session.user.id%>/favourites/<%= posts[i].id %>'>
-                        <button type='hidden' name='_method' value='put'><i class='icon-star'></i></button>
-                      </form>
-                  <% } %>
-
+        <form  method="GET" action="/posts/search">
+          <button type="submit"><i class='icon-star icon-white'></i></button>
+        </form>
         <% } %>
-
       </h1>
      <em> <%= posts[i].updatedAt.toLocaleDateString() %></em>
    </div>
@@ -71,4 +50,3 @@
     <a href="/posts/new"> <i class='icon-plus-sign'></i> Crear nuevo Post </a>
   </nav>
 </footer>
-
