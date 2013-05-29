@@ -12,7 +12,11 @@ body {
   padding-top: 1%;
 }
 #imagen_inicial{
-  float: center;
+  float: left;
+  max-height: 10em;
+}
+#bloqueExplicacion{
+  float: right;
 }
 #comentarios{
   float: right;

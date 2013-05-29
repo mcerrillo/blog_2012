@@ -135,3 +135,7 @@ exports.delete = function(req, res, next){
         });
 }
 
+exports.info = function(req, res, next){
+        res.render('info/index');
+}
+

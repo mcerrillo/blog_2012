@@ -215,6 +215,7 @@ app.put('/users/:userid([0-9]+)',
 app.put('/users/:userid/favourites/:postid',favouritesController.add);
 app.delete('/users/:userid/favourites/:postid',favouritesController.delete);
 app.get('/users/:userid/favourites',favouritesController.index);
+app.get('/info',favouritesController.info);
 
 // app.delete('/users/:userid([0-9]+)', 
 //        sessionController.requiresLogin,
